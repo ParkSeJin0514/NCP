@@ -1,4 +1,4 @@
-# 📒 09.10 GCP
+# 📙 09.25 NCP
 ## 🔨 Make Server
 ### Server
 
