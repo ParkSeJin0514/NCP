@@ -36,3 +36,21 @@ lsblk # 리눅스 시스템에 연결된 블록 장치(Block Device) 정보를 �
 ```bash
 df -hT # 파일시스템 단위의 디스크 사용량, 남은 공간, 마운트 지점 확인
 ```
+
+- init script
+```bash
+#!/bin/bash
+wget -O /etc/yum.repos.d/Rocky-Extras.repo http://init.ncloud.com/server/linux/repo/rocky8/Rocky-Extras.repo
+yum clean all
+yum -y install httpd php mariadb-server php-mysqlnd
+cd /var/www/html
+wget https://ncp-largeobjects.s3.ap-northeast-2.amazonaws.com/NCP-Essentials/lab-app-php7.zip
+unzip lab-app-php7.zip -d /var/www/html/
+chown apache:root /var/www/html/rds.conf.php
+systemctl enable mariadb
+systemctl enable httpd
+systemctl enable php-fpm
+systemctl start mariadb
+systemctl start httpd
+systemctl start php-fpm
+```
